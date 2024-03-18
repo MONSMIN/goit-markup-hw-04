@@ -10,6 +10,9 @@
     --light-mode-background-color: #f4f4fd;
     --light-slate: #8E8F99;
     --green: #31D0AA;
+    --white: #fff;
+    --navy-blue-modal: rgba(46, 47, 66, 0.4);
+    --dairy: #fcfcfc;
 
 }
 
@@ -81,6 +84,7 @@ ul, ol {
 
 a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 
@@ -179,6 +183,11 @@ a {
 
 .header {
     border-bottom: 1px solid var(--primary-accent-color);
+    box-shadow: 
+        0px 1px 6px 0px #2E2F4214,
+        0px 1px 1px 0px #2E2F4229,
+        0px 2px 1px 0px #2E2F4214;
+
 }
 
 
@@ -209,6 +218,12 @@ a {
   gap: 24px;
 }
 
+.button:hover,
+.button:active,
+.button:focus {
+    color: var(--primary-white-color);
+    background-color: var(--pressed-state-color);
+}
 
 /* section portfolio */
 
@@ -228,6 +243,10 @@ a {
 
 .portfolio-obj .item {
   width: calc((100% - 2 * 24px) / 3);
+  color: var(--slate);
+  transition-property: background-color, box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
@@ -238,12 +257,20 @@ a {
 }
 
 
-.button:hover,
-.button:active,
-.button:focus {
-    color: var(--primary-white-color);
-    background-color: var(--pressed-state-color);
+.portfolio-obj-link {
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.portfolio-obj-link{
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.portfolio-obj-link:hover,
+.portfolio-obj-link:focus {
+  display: block;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+  0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
 
 
 /* section hero image */
@@ -442,11 +469,13 @@ a {
   width: calc((100% - 3 * 24px) / 4);
 }
 
+
 .features-icon {
   background-color: var(--light-mode-background-color);
   padding: 24px 0;
   margin-bottom: 8px;
 }
+
 
 .features-icon svg {
   display: block;
@@ -464,6 +493,7 @@ a {
   gap: 24px;
 }
 
+
 .socials-link {
   display: flex;
   justify-content: center;
@@ -477,16 +507,23 @@ a {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
 .socials-icon {
   width: 16px;
   height: 16px;
-  fill: var(--primary-brand-color);
+  fill: var(--light-mode-background-color);
 }
+
 
 .socials-icon svg {
   margin: auto;
 }
 
+
+.socials-link:hover,
+.socials-link:focus {
+  background-color: var(--pressed-state-color);
+}
 
 /* customers-icon */
 
@@ -502,6 +539,7 @@ a {
   height: 88px;
 }
 
+
 .customer-link {
   width: 168px;
   height: 88px;
@@ -516,6 +554,7 @@ a {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
 .customer-icon {
   width: 104px;
   height: 56px;
@@ -523,6 +562,7 @@ a {
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 
 .customer-link:hover,
 .customer-link:focus,
@@ -532,17 +572,20 @@ a {
 }
 
 
+
 /* footer socials*/
 
 .footer .container {
   display: flex;
 }
 
+
 .footer-socials {
   justify-content: center;
   margin-left: 120px;
   
 }
+
 
 .footer-socials-list {
   display: flex;
@@ -553,35 +596,130 @@ a {
 }
 
 
-
-
-.footer-socials-icon {
-  width: 24px;
-  height: 24px; 
-  fill: var(--primary-brand-color);
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+.footer-socials-item {
+  width: 40px;
+  height: 40px;
 }
 
-
-.footer-socials-link:hover,
-.footer-socials-icon:hover{
-  fill: var(--green);
-  background-color: var(--green);
-}
 
 .footer-socials-link {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  background-color: var(--primary-brand-color);
+  justify-content: center;
   border-radius: 50%;
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-brand-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.footer-socials-icon {
+
+
+  fill: var(--light-mode-background-color);
+}
+.footer-socials-link:hover,
+.footer-socials-link:focus {
+  background-color: var(--green);
 }
 
 
+/* modal */
 
-.socials-icon svg {
-  margin: auto;
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--navy-blue-modal);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 408px;
+  min-height: 584px;
+  border-radius: 4px;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.14);
+  background-color: var(--dairy);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.modal-button-close {
+  padding: 0;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-accent-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.modal-button-close:hover,
+.modal-button-close:focus {
+  background-color: var(--pressed-state-color);
+  border: none;
+  fill: var(--white);
+}
+
+
+.modal-icon-close {
+  fill: var(--primary-dark-color);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-button-close:hover .modal-icon-close,
+.modal-button-close:focus .modal-icon-close {
+  fill: var(--white);
+}
+
+
+/* overlay */
+
+.image-container {
+  position:relative;
+  overflow:hidden;
+}
+
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 40px 32px;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+  background-color: var(--primary-brand-color);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--light-mode-background-color);
+}
+
+.portfolio-obj .item:hover .image-overlay,
+.portfolio-obj .item:focus .image-overlay {
+  transform: translateY(0);
 }
